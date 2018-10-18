@@ -1,0 +1,47 @@
+<!--
+  Generated template for the PresupuestoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-title>Presupuesto</ion-title>
+    </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+    <ion-card>
+        <ion-item>
+            <div *ngFor="let item of empleaos">
+                <p><strong>Estilista:</strong> {{item.nombre}}</p>
+            </div>
+            <p item-end><strong>Fecha:</strong>{{solicitud.fecha_creacion | date:'dd/MM/yyyy'}}</p>
+        </ion-item>
+        <div text-center>
+            <h4>Servicios Solicitados</h4>
+        </div>
+        <ion-list>-
+            <ion-item *ngFor="let item of solicitud.servicios_solicitados">
+                <h2 item-start> {{item.nombre_servicio}}</h2>
+                <p item-end>Tipo: {{item.tipo_servicio}}</p>
+            </ion-item>
+        </ion-list>
+        <div text-center>
+            <h1><strong>Total:</strong> {{presupuesto.monto_total}}Bs.</h1>
+        </div>
+        <ion-card-content>
+            <div class="form-group">
+                <ion-row center>
+                    <ion-col col-4>
+                        <button ion-button type="submit" (click)="agendar()">Aceptar</button>
+                    </ion-col>
+                    <ion-col col-4>
+                        <button ion-button clear color="secondary" type="submit" (click)="rechazar()">Rechazar</button>
+                    </ion-col>
+                </ion-row>
+            </div>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

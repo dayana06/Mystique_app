@@ -1,0 +1,47 @@
+<!--
+  Generated template for the ActualizarPerfilPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-title>Actualizar perfil</ion-title>
+    </ion-navbar>
+
+</ion-header>
+<ion-content>
+    <ion-item text-center>
+        <h4>Tus gustos actuales</h4>
+    </ion-item>
+    <ion-card>
+        <div *ngIf="sexo=='hombre'">
+            <ion-card-header style="background-color:blue; color:white">
+                Tus gustos y preferencias
+            </ion-card-header>
+        </div>
+        <div *ngIf="sexo=='mujer'">
+            <ion-card-header style="background-color:pink; color:white">
+                Tus gustos y preferencias
+            </ion-card-header>
+        </div>
+        <ion-card-content>
+            <ion-list no-lines>
+                <ion-item *ngFor="let gus of perfilgustos; let i=index">
+                    <h2>{{gus.parametro}}:</h2>
+                    <p>{{gus.valor}}</p>
+                    <button ion-button small item-end (click)="eliminar(gus,i)">Eliminar</button>
+                </ion-item>
+
+            </ion-list>
+
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>
+<ion-footer>
+    <div padding>
+        <button ion-button block color="secondary" (click)="agregar()">Agregar nuevo</button>
+    </div>
+</ion-footer>

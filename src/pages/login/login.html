@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>Iniciar sesión</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="myForm" (ngSubmit)="loginUser()">
+        <ion-list inset>
+            <ion-item no-lines text-center style="margin-top:80px">
+                <ion-img class="img" src="assets/imgs/logo-mystique.png"></ion-img>
+            </ion-item>
+            <br><br><br>
+            <ion-item>
+                <ion-input formControlName="correo" type="text" placeholder="Correo"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input formControlName="contrasenia" type="password" placeholder="Contraseña"></ion-input>
+            </ion-item>
+        </ion-list>
+        <br><br><br><br>
+        <div padding>
+            <button ion-button block type="submit" [disabled]="!myForm.valid">Ingresar</button>
+        </div>
+    </form>
+</ion-content>

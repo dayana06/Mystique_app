@@ -1,0 +1,85 @@
+<!--
+  Generated template for the CalificarPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar color="primary">
+        <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+        <ion-title>Calificar</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only>
+          <ion-icon name="notifications"></ion-icon>
+        </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <div *ngIf="visible">
+        <h2>Califica la atención en General</h2>
+        <ion-list>
+            <ion-card *ngFor="let item of criterio; let i=index">
+                <ion-item>
+                    <p text-center><strong>{{item.nombre}}</strong></p>
+                    <rating class="ating" [(ngModel)]=calificacion readOnly="false" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false">
+                    </rating>
+                </ion-item>
+                <ion-item>
+                    <p text-center *ngIf="calificacion != null && calificacion <= 1"><strong> No me gustó en lo absoluto</strong></p>
+                    <p text-center *ngIf="calificacion > 1 && calificacion <= 2 "><strong> No me gustó </strong></p>
+                    <p text-center *ngIf="calificacion > 2 && calificacion <= 3 "><strong> Está bien </strong></p>
+                    <p text-center *ngIf="calificacion > 3 && calificacion <= 4"><strong> Me gustó </strong></p>
+                    <p text-center *ngIf="calificacion >= 5"><strong> Me encantó</strong></p>
+                    <ion-row>
+                        <ion-col col-6 col-md-6>
+                        </ion-col>
+                        <ion-col col-4 col-md-4>
+                            <button ion-button small type="submit" (click)="califico(item,i)">Calificar</button>
+                        </ion-col>
+                    </ion-row>
+                </ion-item>
+            </ion-card>
+        </ion-list>
+        <ion-fab right bottom style="margin-bottom:10px; margin-left:10px">
+            <button ion-fab color="primary" (click)="verServicio()">
+          <ion-icon name="arrow-forward"></ion-icon>
+        </button>
+        </ion-fab>
+    </div>
+    <!--***********************************************************-->
+
+    <div *ngIf="Serviciovisible">
+        <h2>Califica los servicios</h2>
+        <ion-list *ngFor="let servicio of orden.servicios_realizados; let i=index">
+            <ion-card>
+                <ion-item>
+                    <p text-center><strong>{{servicio.nombre_servicio}}</strong></p>
+                    <rating class="ating" readOnly="false" max="5" [(ngModel)]=calificacion emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false">
+                    </rating>
+                </ion-item>
+                <ion-item>
+                    <p text-center *ngIf="calificacion != null && calificacion <= 1"><strong> No me gustó en lo absoluto</strong></p>
+                    <p text-center *ngIf="calificacion > 1 && calificacion  <= 2 "><strong> No me gustó </strong></p>
+                    <p text-center *ngIf="calificacion > 2 && calificacion  <= 3 "><strong> Está bien </strong></p>
+                    <p text-center *ngIf="calificacion > 3 && calificacion  <= 4"><strong> Me gustó </strong></p>
+                    <p text-center *ngIf="calificacion >= 5"><strong> Me encantó</strong></p>
+                    <ion-row>
+                        <ion-col col-6 col-md-6>
+                        </ion-col>
+                        <ion-col col-4 col-md-4>
+                            <button ion-button type="submit" small (click)="calificoSer(servicio,i)">Calificar</button>
+                        </ion-col>
+                    </ion-row>
+                </ion-item>
+            </ion-card>
+        </ion-list>
+        <!--icon:'paper-plane'-->
+        <ion-fab right bottom style="margin-bottom:10px; margin-left:10px">
+            <button ion-fab color="primary" (click)="guardarCalificacion()">
+              <ion-icon name="paper-plane"></ion-icon>
+            </button>
+        </ion-fab>
+    </div>
+</ion-content>

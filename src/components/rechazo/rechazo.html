@@ -1,0 +1,34 @@
+<!-- Generated template for the CancelarcitaComponent component -->
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>Motivos de Rechazo</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="closeModal()"><ion-icon name="close"></ion-icon></button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <h3>Seleccione una Opcion</h3>
+    <ion-item>
+        <ion-row>
+        </ion-row>
+        <br>
+        <ion-label>Motivo</ion-label>
+        <ion-select [(ngModel)]="this.respuesta.id_tipo_respuesta_presupuesta" name="tipo" okText="Aceptar" cancelText="Cancelar">
+            <ion-option *ngFor="let tipo of motivo" [value]="tipo.id">{{tipo.nombre}}</ion-option>
+        </ion-select>
+    </ion-item>
+    <br><br>
+    <div text-center>
+        <h3>Descripción</h3>
+    </div>
+    <br><br>
+    <ion-item text-center>
+        <ion-label floating>Especifique Razones</ion-label>
+        <ion-textarea [(ngModel)]="respuesta.descripcion" type="text" name="razon"></ion-textarea>
+    </ion-item>
+    <br><br>
+    <div padding>
+        <button ion-button block (click)="confirmar()">Enviar</button>
+    </div>
+</ion-content>

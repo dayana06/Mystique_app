@@ -1,0 +1,103 @@
+<ion-header>
+
+    <ion-navbar color="primary">
+        <button ion-button menuToggle>
+                <ion-icon name="menu"></ion-icon>
+           </button>
+        <ion-title>Perfil</ion-title>
+
+    </ion-navbar>
+
+</ion-header>
+<ion-content>
+
+    <ion-card>
+        <ion-item>
+            <ion-avatar item-start>
+                <img *ngIf="sexo=='Hombre'" src="assets/imgs/gmascu.jpeg">
+                <img *ngIf="sexo =='Mujer'" src="assets/imgs/gfeme.jpeg">
+            </ion-avatar>
+            <h2>Nombre: {{user.nombre}} {{user.apellido}}</h2>
+            <p>{{user.correo}}</p>
+        </ion-item>
+        <img *ngIf="sexo=='Hombre'" src="assets/imgs/masculino.png">
+        <img *ngIf="sexo=='Mujer'" src="assets/imgs/femenino.png">
+    </ion-card>
+    <ion-item>
+        <h2>Fecha de nacimiento: {{user.fecha_nacimiento | date:'dd/MM/yyyy'}}</h2>
+        <p>Telefono: {{user.telefono}}</p>
+    </ion-item>
+    <ion-item>
+        <p>Dirección: {{user.direccion}}</p>
+    </ion-item>
+    <ion-card>
+        <!-- Aqui van las carateristicas basicas -->
+        <div *ngIf="sexo=='Hombre'">
+            <ion-card-header style="background-color:blue; color:white">
+                Tus datos básicos
+            </ion-card-header>
+        </div>
+        <div *ngIf="sexo=='Mujer'">
+            <ion-card-header style="background-color:pink; color:white">
+                Tus datos básicos
+            </ion-card-header>
+        </div>
+        <ion-card-content>
+            <ion-list no-lines>
+                <ion-item *ngFor="let basico of perfilbasico">
+                    <h2>{{basico.parametro}}:</h2>
+                    <p item-end>{{basico.valor}}</p>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+    <!--///////////////////////////////////////////////////-->
+
+    <!-- Aqui van las caracteristicas fisicas -->
+    <ion-card>
+        <div *ngIf="sexo=='Hombre'">
+            <ion-card-header style="background-color:blue; color:white">
+                Tus Caracteristicas
+            </ion-card-header>
+        </div>
+        <div *ngIf="sexo=='Mujer'">
+            <ion-card-header style="background-color:pink; color:white">
+                Tus Caracteristicas
+            </ion-card-header>
+        </div>
+        <ion-card-content>
+            <ion-list no-lines>
+                <ion-item *ngFor="let carac of perfilcaracteristicas">
+                    <h2>{{carac.parametro}}:</h2>
+                    <p item-end>{{carac.valor}}</p>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+    <!--///////////////////////////////////////////////////-->
+    <!-- Aqui van los gustos y preferencias -->
+    <ion-card>
+        <div *ngIf="sexo=='Hombre'">
+            <ion-card-header style="background-color:blue; color:white">
+                Tus gustos y preferencias
+            </ion-card-header>
+        </div>
+        <div *ngIf="sexo=='Mujer'">
+            <ion-card-header style="background-color:pink; color:white">
+                Tus gustos y preferencias
+            </ion-card-header>
+        </div>
+        <ion-card-content>
+            <ion-list no-lines>
+                <ion-item *ngFor="let gus of perfilgustos">
+                    <h2>{{gus.parametro}}:</h2>
+                    <p item-end>{{gus.valor}}</p>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+    <!--///////////////////////////////////////////////////-->
+    <div padding>
+        <button ion-button block (click)="actualizar()">Actualizar Preferencias</button>
+    </div>
+</ion-content>

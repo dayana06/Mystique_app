@@ -1,0 +1,63 @@
+<!--
+  Generated template for the SugerenciasPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar color="primary">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+       </button>
+        <ion-title>Comentarios</ion-title>
+    </ion-navbar>
+    <ion-toolbar color="primary" no-border-top>
+        <ion-segment [(ngModel)]="comentarios">
+            <ion-segment-button style="color:white" value="historico">
+                Tus Comentarios
+            </ion-segment-button>
+            <ion-segment-button style="color:white" value="respuestas">
+                Respuestas
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content pullingText="suelta para actualizar" pullingIcon="arrow-dropdown" refreshingSpinner="crescent" refreshingText="..cargando">
+        </ion-refresher-content>
+    </ion-refresher>
+    <div [ngSwitch]="comentarios">
+        <ion-list *ngSwitchCase="'historico'">
+            <ion-card *ngFor="let come of Comentario">
+                <ion-item>
+                    <h2>Tipo: {{come.tipo_comentario}}</h2>
+                    <p>Fecha: {{come.fecha_creacion | date: 'dd/MM/yyyy H:mm' }}</p>
+                </ion-item>
+                <ion-card-content>
+                    <p>Contenido: {{come.descripcion}}</p>
+                </ion-card-content>
+            </ion-card>
+        </ion-list>
+        <ion-list *ngSwitchCase="'respuestas'">
+            <ion-card *ngFor="let r of tcomentarios">
+                <ion-item>
+                    <h2>Respuesta: {{r.tipo_respuesta_comentario}}</h2>
+                </ion-item>
+                <ion-card-content>
+                    <p>Contenido: {{r.descripcion}}</p>
+                    <ion-item>
+                        <button ion-button small item-end>Eliminar</button>
+                    </ion-item>
+                </ion-card-content>
+            </ion-card>
+        </ion-list>
+    </div>
+    <ion-fab right bottom style="margin-bottom:5px">
+        <button ion-fab color="primary" (click)='gotoNuevoComentario()'>
+    <ion-icon name="mail"></ion-icon>
+  </button>
+    </ion-fab>
+</ion-content>

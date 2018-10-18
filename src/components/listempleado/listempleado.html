@@ -1,0 +1,13 @@
+<!-- Generated template for the ListempleadoComponent component -->
+<h3>Selecciona un empleado</h3>
+<ion-list>
+    <button ion-item *ngFor="let empe of empleados" (click)="Cerrar(empe)">
+                <ion-thumbnail item-start>
+                    <img src="{{empe.foto}}">
+                </ion-thumbnail>
+                <div item-content>
+                    <h2 color="primary">{{empe.nombre}}</h2>
+                    <p>Especialidad: {{empe.especialidad}}</p>
+                </div>
+            </button>
+</ion-list>

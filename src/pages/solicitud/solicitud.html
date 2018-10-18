@@ -1,0 +1,83 @@
+<!--
+  Generated template for the SolicitudPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>Solicitud</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <div *ngIf="catego">
+        <ion-list>
+            <ion-list-header>
+                <p text-center>Seleccione una categoria</p>
+            </ion-list-header>
+            <button ion-item *ngFor="let item of categoria" (click)="siguiente(item)"> {{item.nombre}}</button>
+            <button ion-item (click)="verlist()">Todos</button>
+        </ion-list>
+    </div>
+    <div *ngIf="visible">
+        <ion-searchbar [(ngModel)]="searchTerm" [formControl]="searchControl" (ionInput)="onSearchInput()" placeholder="Buscar por nombre, tipo"></ion-searchbar>
+        <div *ngIf="searching" class="spinner-container">
+            <ion-spinner></ion-spinner>
+        </div>
+        <p text-center>Seleccionar servicios</p>
+        <ion-list>
+            <ion-item *ngFor="let item of serviciosmostrar ,let i=index ">
+                <ion-thumbnail item-start>
+                    <img src="{{url_file}}servicio/{{item.id}}.{{item.imagen}}">
+                </ion-thumbnail>
+                <div item-content>
+                    <h2>{{item.nombre}}</h2>
+                </div>
+                <ion-toggle [(ngModel)]="servicios[i].select" (ngModelChange)="ver(i)" color="secondary" checked="false" item-end></ion-toggle>
+            </ion-item>
+        </ion-list>
+
+    </div>
+    <div *ngIf="preferenciaAtencion">
+        <p text-center>Indique su preferencia de atencion</p>
+        <ion-list>
+            <div padding>
+                <button ion-button color="secondary" (click)="Sexo('hombre')" block>Hombre</button>
+            </div>
+            <div padding>
+                <button ion-button color="secondary" (click)="Sexo('mujer')" block>Mujer</button>
+            </div>
+            <div padding>
+                <button ion-button color="secondary" (click)="Sexo('cualquiera')" block>Cualquiera</button>
+            </div>
+        </ion-list>
+    </div>
+    <div *ngIf="empleadovisible">
+        <p text-center>Selecciona empleado</p>
+        <ion-list>
+            <ion-item *ngFor="let empe of emplever;let i=index">
+                <ion-thumbnail item-start>
+                    <img src="{{url_file}}empleado/{{empe.id}}.{{empe.imagen}}">
+                </ion-thumbnail>
+                <div item-content>
+                    <h2 color="primary">{{empe.nombre}}</h2>
+                    <p>Telefono: {{empe.telefono}}</p>
+                </div>
+                <ion-toggle color="secondary" [(ngModel)]="emplever[i].ele" checked="false" (ngModelChange)="AsignarEmpleado(empe.id,i)" item-end></ion-toggle>
+            </ion-item>
+        </ion-list>
+        <ion-row>
+            <ion-col col-8 col-md-8>
+            </ion-col>
+            <ion-col col-4 col-md-4>
+                <button ion-button type="submit" (click)="gotoGuardar()"> Enviar</button>
+            </ion-col>
+        </ion-row>
+
+    </div>
+    <ion-fab *ngIf="visible" right bottom style="margin-bottom:10px; margin-left:10px">
+        <button ion-fab color="primary" (click)="verPreferencia()">
+                <ion-icon name="arrow-forward"></ion-icon>
+              </button>
+    </ion-fab>
+</ion-content>

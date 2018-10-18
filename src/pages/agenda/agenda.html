@@ -1,0 +1,48 @@
+<!--
+  Generated template for the AgendaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-title>Agendar</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <h4>Seleccione Fecha</h4>
+    <ion-item>
+        <button ion-button (click)="openDate()" item-start large>
+                <ion-icon name="calendar"></ion-icon>
+        </button>
+        <span ion-datepicker [(value)]="initDate" [headerClasses]="color" [localeStrings]="localeString" [disabledDates]="diasnodisponibles" [min]="initDate" clear class="ScheduleDate" locale="en-US" (ionSeleted)="obtenerBloques()" (onChange)="obtenerBloques()">
+                <h1  style="margin-left:20px">{{initDate |  date:'dd/MM/yyyy'}}</h1>
+        </span>
+    </ion-item>
+    <div *ngIf="horavisible">
+        <h4>Seleccione Hora de atención</h4>
+        <ion-list>
+            <ion-card *ngFor="let item of citas" (click)=saveCita(item)>
+                <ion-item>
+                    <ion-icon name="alarm" item-start></ion-icon>
+
+                </ion-item>
+                <ion-card-content>
+                    <h2>Hora disponible: {{item.hora_inicio}}</h2>
+                    <p>Fecha: {{initDate | date:'dd/MM/yyyy'}}</p>
+                </ion-card-content>
+            </ion-card>
+        </ion-list>
+        <ion-row>
+            <ion-col col-8 col-md-8>
+            </ion-col>
+            <ion-col col-4 col-md-4>
+
+            </ion-col>
+        </ion-row>
+    </div>
+</ion-content>

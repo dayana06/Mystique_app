@@ -1,0 +1,8 @@
+<!-- Generated template for the ServrecomendadoComponent component -->
+<ion-list *ngFor="let item of servicios_mostrar">
+    <ion-card>
+        <img class="img" src="{{url_file}}servicio/{{item.id}}.{{item.imagen}} " />
+        <div class="card-title ">{{item.nombre}}</div>
+        <div class="card-subtitle ">{{item.descripcion}}</div>
+    </ion-card>
+</ion-list>

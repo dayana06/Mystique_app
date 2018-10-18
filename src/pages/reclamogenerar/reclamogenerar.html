@@ -1,0 +1,37 @@
+<!--
+  Generated template for the ReclamogenerarPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>Generar Reclamo</ion-title>
+    </ion-navbar>
+</ion-header>
+<!---->
+<ion-content padding>
+    <ion-item>
+        <ion-label stacked>Tipo de reclamo</ion-label>
+        <ion-select [(ngModel)]="reclamo.id_tipo_reclamo" multiple="false">
+            <ion-option *ngFor=" let item of tipo_reclamo" [value]="item.id">{{item.nombre}}</ion-option>
+        </ion-select>
+    </ion-item>
+    <!---->
+    <ion-item>
+        <ion-label stacked>Servicio</ion-label>
+        <ion-select [(ngModel)]=" reclamo.id_detalle_servicio" multiple="false">
+            <ion-option *ngFor=" let item of orden.servicios_realizados; let i=index" [value]="item.detalle_servicio">{{item.nombre_servicio}}</ion-option>
+        </ion-select>
+    </ion-item>
+    <br>
+    <ion-label stacked>Descripción</ion-label>
+    <ion-textarea [(ngModel)]="reclamo.descripcion" name="comentario"></ion-textarea>
+    <ion-row>
+        <ion-col col-8 col-md-8>
+        </ion-col>
+        <ion-col col-4 col-md-4>
+            <button ion-button type="submit" (click)="guardarReclamo()"> Enviar</button>
+        </ion-col>
+    </ion-row>
+</ion-content>

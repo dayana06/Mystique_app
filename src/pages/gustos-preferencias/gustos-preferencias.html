@@ -1,0 +1,35 @@
+<!--
+  Generated template for the GustosPreferenciasPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">Cerrar</button>
+        </ion-buttons>
+        <ion-title>Gustos y Preferencias</ion-title>
+    </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+    <h5 text-center>Seleciona una opcion</h5>
+    <ion-item>
+        <ion-label stacked>Categoria</ion-label>
+        <ion-select [(ngModel)]="parametro_select" (ngModelChange)="opcionesParametro()">
+            <ion-option [value]="item.id" *ngFor="let item of parametros_mostrar">{{item.nombre}}</ion-option>
+        </ion-select>
+    </ion-item>
+    <br>
+    <h4 text-center> Opciones</h4>
+    <ion-list *ngFor="let val of valor_mostrar; let i=index">
+        <button ion-item (click)="agregar(val,i)">{{val.nombre}}</button>
+    </ion-list>
+</ion-content>
+<!--<ion-footer>
+    <div padding>
+        <button ion-button block color="secondary" (click)="culminar()">Guardar cambios</button>
+    </div>
+</ion-footer>-->

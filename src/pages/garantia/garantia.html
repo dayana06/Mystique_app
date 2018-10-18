@@ -1,0 +1,95 @@
+<!--
+  Generated template for the GarantiaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-title>Solicitud</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <div *ngIf="visible">
+        <h4>Seleccione Fecha</h4>
+        <ion-item>
+            <button ion-button (click)="openDate()" item-start large>
+                <ion-icon name="calendar"></ion-icon>
+        </button>
+            <span ion-datepicker [(value)]="initDate" [headerClasses]="color" [localeStrings]="localeString" [disabledDates]="disabledDates" [min]="initDate" clear class="ScheduleDate" locale="en-US" (ionSeleted)="obtenerBloques()" (ionChange)="obtenerBloques()">
+                <h1  style="margin-left:20px">{{initDate |  date:'dd/MM/yyyy'}}</h1>
+        </span>
+        </ion-item>
+    </div>
+    <div *ngIf="horavisible">
+        <h4>Seleccione Hora de atención</h4>
+        <ion-list>
+            <ion-card *ngFor="let item of bloques">
+                <ion-item>
+                    <ion-icon name="alarm" item-start></ion-icon>
+                    <ion-toggle color="secondary" checked="false" item-end></ion-toggle>
+                </ion-item>
+                <ion-card-content>
+                    <h2>Hora disponible: {{item}}</h2>
+                    <p>Fecha: {{initDate | date:'dd/MM/yyyy'}}</p>
+                </ion-card-content>
+            </ion-card>
+            <h4>Indique si desea ser atendido por un hombre o una mujer</h4>
+            <ion-row>
+                <ion-col col-8 col-md-4>
+                    <ion-card>
+                        <ion-list>
+                            <ion-item>
+                                <ion-label>Hombre</ion-label>
+                                <ion-checkbox color="secondary" item-end checked="isChecked"></ion-checkbox>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label>Mujer</ion-label>
+                                <ion-checkbox color="secondary" item-end checked="isChecked"></ion-checkbox>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label>Indiferente</ion-label>
+                                <ion-checkbox color="secondary" item-end checked="isChecked"></ion-checkbox>
+                            </ion-item>
+                        </ion-list>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+
+        </ion-list>
+        <div style="margin-top:10px">
+            <ion-fab right bottom style="margin-bottom:10px; margin-left:10px">
+                <button ion-fab color="primary" (click)="verConfirmacion()">
+                <ion-icon name="arrow-forward"></ion-icon>
+              </button>
+            </ion-fab>
+        </div>
+    </div>
+    <div *ngIf="empleadovisible">
+        <h3>Selecciona un empleado</h3>
+        <ion-list>
+            <ion-item *ngFor="let empe of empleadosDisponibles">
+                <ion-thumbnail item-start>
+                    <img src="{{empe.foto}}">
+                </ion-thumbnail>
+                <div item-content>
+                    <h2 color="primary">{{empe.nombre}}</h2>
+                    <p>Especialidad: {{empe.especialidad}}</p>
+                </div>
+                <ion-toggle color="secondary" checked="false" item-end></ion-toggle>
+            </ion-item>
+        </ion-list>
+        <ion-row>
+            <ion-col col-8 col-md-8>
+            </ion-col>
+            <ion-col col-4 col-md-4>
+                <button ion-button type="submit" (click)="gotoGuardar()"> Enviar</button>
+            </ion-col>
+        </ion-row>
+
+    </div>
+</ion-content>

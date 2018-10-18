@@ -1,0 +1,65 @@
+<!--
+  Generated template for the ServiciosRPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="primary" no-border-bottom>
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <ion-title>Servicios Recibidos</ion-title>
+
+    </ion-navbar>
+    <ion-toolbar color="primary" no-border-top>
+
+        <ion-segment [(ngModel)]="pestana">
+            <ion-segment-button style="color:white" value="calificar">
+                Por Calificar
+            </ion-segment-button>
+            <ion-segment-button style="color:white" value="garantia">
+                En Garantia
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+</ion-header>
+<!---->
+<ion-content padding>
+    <div [ngSwitch]="pestana">
+        <ion-list *ngSwitchCase="'calificar'">
+            <ion-item *ngFor="let servicio of ordenes_no_calificadas; let i=index">
+                <h2>Servicio recibido</h2>
+                <p>¡Calificalos!</p>
+                <ion-card *ngFor="let item of servicio.servicios_realizados">
+                    <ion-item>
+                        <p><strong><h2>{{item.el_tipo }}</h2></strong></p>
+                        <p>{{item.nombre_servicio}}</p>
+                        <p>{{item.fecha_servicio_solicitado | date: 'dd/MM/yyyy H:mm'}}</p>
+                    </ion-item>
+                </ion-card>
+                <button ion-button small color="primary" (click)="calificar(servicio)">
+                     <div>Calificar</div></button>
+                <button ion-button clear small color="secondary" (click)="Reclamo()">
+                     <div>Reclamar</div></button>
+            </ion-item>
+        </ion-list>
+        <!---->
+        <ion-list *ngSwitchCase="'garantia'">
+            <ion-item *ngFor="let servicio of ordenes_calificadas; let i=index">
+                <h2>Servicio recibido</h2>
+                <ion-card *ngFor="let item of servicio.servicios_realizados">
+                    <ion-item>
+                        <p><strong><h2>{{item.el_tipo }}</h2></strong></p>
+                        <p>{{item.nombre_servicio}}</p>
+                        <p>{{item.fecha_servicio_solicitado | date: 'dd/MM/yyyy H:mm'}}</p>
+                    </ion-item>
+                </ion-card>
+                <button ion-button small color="primary" (click)="Reclamo1(servicio)">
+                    <div>Solicitar garantia</div>
+                </button>
+            </ion-item>
+        </ion-list>
+    </div>
+</ion-content>
